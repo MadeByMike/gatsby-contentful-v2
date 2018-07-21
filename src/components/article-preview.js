@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './article-preview.module.css'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 
 export default ({ article }) => (
   <div className={styles.preview}>

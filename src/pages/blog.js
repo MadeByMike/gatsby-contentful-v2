@@ -1,16 +1,17 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import get from 'lodash/get'
 import Helmet from 'react-helmet'
+import get from 'lodash/get'
 import styles from './blog.module.css'
 import ArticlePreview from '../components/article-preview'
+import Layout from '../components/layout'
+import { graphql } from 'gatsby'
 
-class BlogIndex extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
+export default ({ data }) => {
+  const siteTitle = get(data, 'site.siteMetadata.title')
+  const posts = get(data, 'allContentfulBlogPost.edges')
 
-    return (
+  return (
+    <Layout>
       <div style={{ background: '#fff' }}>
         <Helmet title={siteTitle} />
         <div className="wrapper">
@@ -27,11 +28,9 @@ class BlogIndex extends React.Component {
           </ul>
         </div>
       </div>
-    )
-  }
+    </Layout>
+  )
 }
-
-export default BlogIndex
 
 export const pageQuery = graphql`
   query BlogIndexQuery {
